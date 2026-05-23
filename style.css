@@ -6,11 +6,27 @@ html {
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
+    width: 100%;
 }
 
-/* Sections Background Logic for Contrast */
+/* --- Theme Color Logic Using Bootstrap Utilities --- */
+[data-bs-theme="light"] {
+    --custom-section-bg: #f8f9fa;
+    --custom-card-bg: #ffffff;
+    --custom-nav-bg: rgba(255, 255, 255, 0.95);
+    --custom-nav-border: #e9ecef;
+}
+
+[data-bs-theme="dark"] {
+    --custom-section-bg: #1a1e23;
+    --custom-card-bg: #15191e;
+    --custom-nav-bg: rgba(21, 25, 30, 0.95);
+    --custom-nav-border: #2b3035;
+}
+
 .section-bg {
-    background-color: #1a1e23 !important; /* Alternating section colors for beautiful visuals */
+    background-color: var(--custom-section-bg) !important;
+    transition: background-color 0.3s ease;
 }
 
 /* Custom Text Gradient */
@@ -22,9 +38,28 @@ body {
 
 /* Navbar Customization */
 .custom-nav {
-    background-color: rgba(21, 25, 30, 0.95) !important;
+    background-color: var(--custom-nav-bg) !important;
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid #2b3035;
+    border-bottom: 1px solid var(--custom-nav-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Theme Toggle Button Styling */
+#themeToggle {
+    transition: transform 0.3s ease;
+}
+#themeToggle:hover {
+    transform: rotate(15deg) scale(1.1);
+}
+
+/* Custom utility */
+.small-text-spacing {
+    letter-spacing: 0.1rem;
+    font-size: 0.9rem;
+}
+
+.style-paragraph {
+    max-width: 600px;
 }
 
 /* Hero Image Container Styling */
@@ -42,10 +77,9 @@ body {
 .hero-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures portrait scales correctly */
+    object-fit: cover;
 }
 
-/* Smooth Floating Animation for Hero Profile */
 @keyframes floatingProfile {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-12px); }
@@ -54,19 +88,21 @@ body {
 
 /* Tech Badges Base Design */
 .skill-badge {
-    background: #252b31;
-    color: #f8f9fa;
+    background: var(--bs-secondary-bg);
+    color: var(--bs-body-color);
     padding: 10px 18px;
     font-size: 14px;
     font-weight: 500;
     border-radius: 30px;
     display: flex;
     align-items: center;
-    border: 1px solid #343a40;
+    border: 1px solid var(--bs-border-color);
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 .skill-badge:hover {
     background: #0d6efd;
+    color: #ffffff !important;
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
 }
@@ -75,18 +111,21 @@ body {
 
 /* Custom Projects Card */
 .card-custom {
-    background-color: #15191e !important;
-    border: 1px solid #212529 !important;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    background-color: var(--custom-card-bg) !important;
+    border: 1px solid var(--bs-border-color) !important;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease;
 }
 .card-custom:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4) !important;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+}
+[data-bs-theme="dark"] .card-custom:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5) !important;
 }
 .project-img-wrapper {
     overflow: hidden;
     height: 210px;
-    background-color: #2b3035; /* Fallback frame background */
+    background-color: var(--bs-secondary-bg);
 }
 .card-custom img {
     width: 100%;
@@ -100,28 +139,23 @@ body {
 
 /* Contact Social Media Circle Architecture */
 .social-icon {
-    width: 65px;
-    height: 65px;
-    background-color: #15191e;
-    color: #a0aec0; /* Standard light grey text for ultra readability */
+    width: 60px;
+    height: 60px;
+    background-color: var(--custom-card-bg);
+    color: var(--bs-secondary-color);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    font-size: 26px;
+    font-size: 24px;
     text-decoration: none;
-    border: 1px solid #2d3748;
+    border: 1px solid var(--bs-border-color);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.cursor-pointer {
-    cursor: pointer;
-}
-
-/* Distinct Hover Effects with Enhanced Brand Lighting */
 .social-icon:hover {
-    transform: scale(1.18) translateY(-6px);
-    color: #ffffff !important; /* Overriding text color conflicts instantly */
+    transform: scale(1.15) translateY(-6px);
+    color: #ffffff !important;
 }
 .github:hover { background-color: #24292e; border-color: #24292e; box-shadow: 0 5px 15px rgba(36, 41, 46, 0.5); }
 .whatsapp:hover { background-color: #25D366; border-color: #25D366; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5); }
@@ -129,3 +163,31 @@ body {
 .facebook:hover { background-color: #1877F2; border-color: #1877F2; box-shadow: 0 5px 15px rgba(24, 119, 242, 0.5); }
 .instagram:hover { background-color: #E4405F; border-color: #E4405F; box-shadow: 0 5px 15px rgba(228, 64, 95, 0.5); }
 .twitter:hover { background-color: #000000; border-color: #333333; box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); }
+
+/* --- Media Queries --- */
+@media (max-width: 991.98px) {
+    .hero-img-frame {
+        width: 260px;
+        height: 260px;
+        margin-bottom: 20px;
+    }
+    #home {
+        text-align: center;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-img-frame {
+        width: 220px;
+        height: 220px;
+    }
+    .small-text-spacing {
+        font-size: 0.8rem;
+        letter-spacing: 0.05rem;
+    }
+    .social-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}
