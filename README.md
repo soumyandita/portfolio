@@ -32,7 +32,8 @@ A sleek, high-performance, and fully responsive personal portfolio website desig
 ```text
 ├── images/
 │   ├── profile.jpeg          # Optimized hero profile portrait
-│   └── techcorp.png          # Project thumbnail asset
+│   ├── Shoppers_Square.png   # Project1 thumbnail asset
+│   └── techcorp.png          # Project3 thumbnail asset
 ├── index.html                # Document structure & inline anti-flicker theme script
 ├── style.css                 # Custom color mode tokens, animations & media queries
 └── README.md                 # Project documentation
